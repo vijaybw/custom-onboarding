@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5001:5001"
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres.qyrvdajoynnksaqpllzg:kJrTBsY7oZ1dC2nB@aws-1-us-east-2.pooler.supabase.com:5432/postgres
+    # depends_on:
+    #   - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  # db:
+  #   image: supabase/postgres:17.6.1.005
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+
+# volumes:
+#   db_data:
