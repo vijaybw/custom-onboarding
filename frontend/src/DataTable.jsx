@@ -4,16 +4,20 @@ import {
   TableHead, TableRow, Paper, Typography,
   Box, CircularProgress
 } from "@mui/material";
+import api from "./api";   // ✅ use same axios client
 
 export default function DataTable() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
+    api.get("/users")
+      .then((res) => {
+        setUsers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch users:", err);
         setLoading(false);
       });
   }, []);
