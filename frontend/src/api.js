@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: __API_URL__, // injected from vite.config.js
+  baseURL: "https://custom-onboarding-q00q.onrender.com/api/", // injected from vite.config.js
 });
 
 export default api;
