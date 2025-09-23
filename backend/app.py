@@ -9,6 +9,9 @@ def create_app():
 
     db.init_app(app)
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres.qyrvdajoynnksaqpllzg:kJrTBsY7oZ1dC2nB@aws-1-us-east-2.pooler.supabase.com:5432/postgres'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
     with app.app_context():
         db.create_all()
 
